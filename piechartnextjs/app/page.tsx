@@ -18,7 +18,7 @@ export default function Home() {
               <span>
                 Source:
                 <a href="http://mjtechsolutions.in" target="_blank">
-                  mjtechsolutions
+                  mjtechsolution
                 </a>
               </span>
             </p>
