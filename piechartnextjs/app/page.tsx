@@ -14,7 +14,7 @@ export default function Home() {
             <label className="font-black">Machine Status Pie </label>
             <p className="flex flex-col">
               Last Updated:{" "}
-              {date.toDateString() + " " + date.toLocaleTimeString()}
+              {date.toDateString() + "  " + date.toLocaleTimeString()}
               <span>
                 Source:
                 <a href="http://mjtechsolutions.in" target="_blank">
