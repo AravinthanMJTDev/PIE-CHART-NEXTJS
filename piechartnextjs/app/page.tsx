@@ -11,7 +11,7 @@ export default function Home() {
       <div className="flex flex-col  items-center bg-white border w-[800px] h-[600px] rounded-[25px]">
         <div className="flex flex-row justify-between  bg-white w-[80%]  mb-5">
           <div className="flex flex-col">
-            <label className="font-black">Machine Staus Pie </label>
+            <label className="font-black">Machine Status Pie </label>
             <p className="flex flex-col">
               Last Updated:{" "}
               {date.toDateString() + " " + date.toLocaleTimeString()}
