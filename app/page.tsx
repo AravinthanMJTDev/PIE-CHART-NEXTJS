@@ -1,29 +1,25 @@
 "use client";
 import PieChart from "./piechart";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HighchartsChart from "./highchartsChart";
+import { RefreshCw } from "lucide-react";
+
 export default function Home() {
   const [open, setOpen] = useState(false);
-  const date = new Date();
+  const [formattedDate, setFormattedDate] = useState("");
+
+  useEffect(() => {
+    const date = new Date();
+    setFormattedDate(date.toDateString() + "  " + date.toLocaleTimeString());
+  }, []);
 
   return (
-    <div className="flex flex-row justify-around items-center bg-black">
-      <div className="flex flex-col  items-center bg-white border w-[800px] h-[600px] rounded-[25px]">
-        <div className="flex flex-row justify-between  bg-white w-[80%]  mb-5">
-          <div className="flex flex-col">
-            <label className="font-black">Machine Status Pie </label>
-            <p className="flex flex-col">
-              Last Updated:{" "}
-              {date.toDateString() + "  " + date.toLocaleTimeString()}
-              <span>
-                Source:
-                <a href="http://mjtechsolutions.in" target="_blank">
-                  mjtechsolution
-                </a>
-              </span>
-            </p>
-          </div>
-
+    <div className="flex flex-row justify-around items-center w-[800px] h-[500px] mx-auto">
+      <div className="flex flex-col  items-center bg-white border w-full h-full rounded-[25px] relative">
+        <div className="flex flex-row justify-between w-full px-10 pt-3">
+          <label className="font-serif-Times-New-Roman">
+            Machine Status Pie{" "}
+          </label>
           <div className=" flex flex-row items-center justify-center gap-3">
             <div>
               <select className="border border-s-black-50" defaultValue="Today">
@@ -32,6 +28,7 @@ export default function Home() {
                 <option value="">Last Week</option>
               </select>
             </div>
+            <RefreshCw />
             <div
               className=" flex flex-col  relative justify-between rounded-md focus:outline-none hover:cursor-pointer gap-0.5"
               onClick={() => setOpen(!open)}
@@ -63,6 +60,19 @@ export default function Home() {
                 </div>
               )}
             </div>
+          </div>
+        </div>
+        <div className="flex flex-row w-full justify-start ml-20">
+          <div className="flex flex-col">
+            <p className="flex flex-col font-sans">
+              Last Updated: {formattedDate}
+              <span>
+                Source:
+                <a href="http://mjtechsolutions.in" target="_blank">
+                  mjtechsolution
+                </a>
+              </span>
+            </p>
           </div>
         </div>
         <HighchartsChart />

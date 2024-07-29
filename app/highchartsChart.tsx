@@ -34,7 +34,7 @@ const HighchartsChart = () => {
   const normalizedData = machines.map((machine) => {
     return { ...machine, y: (machine.y / total) * 100 };
   });
-  //   console.log(normalizedData);
+  console.log(normalizedData);
 
   const options = {
     chart: {
@@ -71,7 +71,7 @@ const HighchartsChart = () => {
           {
             enabled: true,
             distance: 15,
-            format: "{point.name}",
+            format: "{point.y:.1f}%",
           },
           {
             enabled: true,
@@ -179,7 +179,7 @@ const HighchartsChart = () => {
   };
 
   return (
-    <div>
+    <div className="w-full h-full">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );
