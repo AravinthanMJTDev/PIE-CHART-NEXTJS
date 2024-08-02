@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 #image of the output
 
-![pie](PIE-CHART-NEXTJS\app\Images\pie_distribution_1.png)
+![pie](\app\Images\pie_distribution_1.png)
 
 ## Getting Started
 
