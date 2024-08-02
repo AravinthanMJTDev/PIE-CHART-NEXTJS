@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+#image of the output
+
+![pie](PIE-CHART-NEXTJS\app\Images\pie_distribution_1.png)
+
 ## Getting Started
 
 First, run the development server:
