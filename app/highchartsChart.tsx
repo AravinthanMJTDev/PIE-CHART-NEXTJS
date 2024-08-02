@@ -40,6 +40,9 @@ const HighchartsChart = () => {
     chart: {
       type: "pie",
     },
+    credits: {
+      enabled: false,
+    },
     title: {
       text: "",
       align: "left",

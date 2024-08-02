@@ -1,22 +1,55 @@
 "use client";
-import PieChart from "./piechart";
-import { useState, useEffect } from "react";
+// import PieChart from "./piechart";
+import { useState, useEffect, useRef } from "react";
 import HighchartsChart from "./highchartsChart";
-import { RefreshCw } from "lucide-react";
+import { RefreshCw, ScanSearch } from "lucide-react";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
   const [formattedDate, setFormattedDate] = useState("");
-
+  const [hover, setHover] = useState(false);
+  const containerRef = useRef(null);
+  console.log("outside");
   useEffect(() => {
     const date = new Date();
     setFormattedDate(date.toDateString() + "  " + date.toLocaleTimeString());
   }, []);
 
+  useEffect(() => {
+    console.log("han");
+    const handleClickOutside = (event: MouseEvent) => {
+      console.log("handlesd");
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setHover(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="flex flex-row justify-around items-center w-[800px] h-[500px] mx-auto">
-      <div className="flex flex-col  items-center bg-white border w-full h-full rounded-[25px] relative">
-        <div className="flex flex-row justify-between w-full px-10 pt-3">
+    <div
+      ref={containerRef}
+      className="w-80 flex flex-row justify-around items-center  mx-auto overflow-hidden  border  rounded-xl bg-white transition-transform duration-300 ease-in-out"
+      onClick={() => {
+        setHover(!hover);
+      }}
+      style={{
+        transform: `scale(${hover ? 1 : 0.5})`,
+      }}
+    >
+      <div className="flex flex-col  items-center border w-full h-full  relative bg-inherit">
+        <div
+          className="flex flex-row justify-between w-full px-10 pt-3"
+          onClick={(e: React.MouseEvent) => e.stopPropagation()}
+        >
           <label className="font-serif-Times-New-Roman">
             Machine Status Pie{" "}
           </label>
@@ -28,7 +61,17 @@ export default function Home() {
                 <option value="">Last Week</option>
               </select>
             </div>
-            <RefreshCw />
+            <div>
+              <RefreshCw />
+            </div>
+            <div
+              onClick={(e: React.MouseEvent) => {
+                e.stopPropagation();
+                setHover(!hover);
+              }}
+            >
+              <ScanSearch />
+            </div>
             <div
               className=" flex flex-col  relative justify-between rounded-md focus:outline-none hover:cursor-pointer gap-0.5"
               onClick={() => setOpen(!open)}
@@ -75,7 +118,12 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <HighchartsChart />
+        <div
+          className="w-full h-full"
+          onClick={(e: React.MouseEvent) => e.stopPropagation()}
+        >
+          <HighchartsChart />
+        </div>
       </div>
     </div>
   );
