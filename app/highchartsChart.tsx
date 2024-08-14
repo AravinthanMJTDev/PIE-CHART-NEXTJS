@@ -25,6 +25,11 @@ const HighchartsChart = () => {
       y: 0,
       drilldown: "Machine-4",
     },
+    {
+      name: "Machine-45",
+      y: 100,
+      drilldown: "Machine-5",
+    },
   ];
 
   const total = machines.reduce((acc, num) => {
